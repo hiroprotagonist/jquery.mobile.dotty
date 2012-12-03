@@ -1,0 +1,17 @@
+.dotty {
+	height: 26px;
+	background: transparent;
+	position: fixed;
+	bottom: 0;
+	text-align: center;
+	z-index: 1;
+	width: 100%;
+}
+.dotty .dot {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background: url("images/dotty.png") no-repeat;
+	background-position: -70px 4px; /* Default Dot */
+}
+.dotty .dot.pointer { background-position: -105px 4px; }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes" />	
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
+
+	<script type="text/javascript" src="lib/jquery.mobile.swiper.js"></script>
+	<link type="text/css" rel="stylesheet" href="jquery.mobile.dotty.css"/>
+	<script type="text/javascript" src="jquery.mobile.dotty.js"></script>
+	
+	
+</head>
+<body>
+	<script>
+	// Create some Test Pages very smart
+	(function($) {
+		var pageTemplate = [
+			'<div data-role="page" id="page_${item.current}" data-swiperight="#page_${item.previous}" data-swipeleft="#page_${item.next}" data-rowindex="${item.current}" data-rowtotal="${item.total}">',
+				'<div data-role="header"><h1>Page ${item.current}</h1></div>',
+			'</div>'].join('');
+		var page = function( nof, total, pagetemplate ) {
+			return _.template(pageTemplate, {item:{
+				current: nof,
+				previous: nof -1,
+				next: nof +1,
+				total: total
+			}},
+			{interpolate : /\$\{(.+?)\}/g});
+		};
+		var total = 20; 
+		_(total).times(function( idx ) {
+			$('body').append(page(idx +1, total, pageTemplate));
+		});
+	
+	})(jQuery);
+	</script>
+
+	<script type="text/javascript">
+	$(':jqmData(role="page")').live( 'pageshow', function() {
+			var nof = $(this).data('rowindex')
+			  , total = $(this).data('rowtotal');
+			$(':jqmData(role="dotty")').dotty('draw', nof, total);
+	});
+	$(document).ready(function() {
+		function workaround () {
+			$.Dotty( 1,20 );
+		}
+		window.setTimeout( workaround, 150 );
+	});
+	
+	</script>
+
+</body>
+</html>

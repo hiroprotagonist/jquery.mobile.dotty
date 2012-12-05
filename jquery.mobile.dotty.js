@@ -32,7 +32,7 @@
 			this.highindex = nof;
 			var painter = this._getPainter( total );
 			// Optimization
-			if ( this.total !== total || forceredraw) {
+			if ( this.total !== total || this.element.children().length === 0 || forceredraw ) {
 				this.total = total;
 				painter.drawdots( total );
 				painter.highlight( nof );

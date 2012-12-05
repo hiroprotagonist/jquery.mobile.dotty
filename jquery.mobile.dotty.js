@@ -74,10 +74,11 @@
 		function drawNumbers( total ) {
 			widget._clearui();
 			var el = widget.element
-			  , nDIV = $('<span class="n">')
-			  , seperatorDIV = $('<span class="seperator">').html( '/' )
-			  , totalDIV = $('<span class="total">').html( total );
-			el.append([nDIV,seperatorDIV,totalDIV]);
+			  , currentPagenumber = $('<span class="n">')
+			  , slash = $('<span class="seperator">').html( '/' )
+			  , totalPagecount = $('<span class="total">').html( total );
+			
+			el.append([currentPagenumber, slash, totalPagecount]);
 		}
 		function drawCurrentPageNumber( n ) {
 			$( '.n', this.element ).html( n );

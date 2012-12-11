@@ -93,8 +93,9 @@
 		var pager = $( '<div data-role="dotty">' );
 		$( 'body' ).append(pager);
 		pager.dotty();
-		$.Dotty = function(nthof, total) {
-			pager.dotty( 'draw', nthof, total );
+		$.Dotty = {
+			draw: function(n, total) { pager.dotty( 'draw', n, total ); },
+			hide: function() { pager.dotty( 'hide' ); }
 		};
 	});
 	
